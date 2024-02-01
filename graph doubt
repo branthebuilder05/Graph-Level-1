@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main
+{
+    static class Edge{
+        int src;
+        int dest;
+        int wt;
+        Edge(int src,int dest,int wt){
+            this.src=src;
+            this.dest=dest;
+            this.wt=wt;
+        }
+    }
+    
+	public static void main(String[] args) {
+		ArrayList<ArrayList<Edge>>graph=new ArrayList<ArrayList<Edge>>();
+		//ArrayList<Edge> graph[] = new ArrayList<Edge>[6];
+		int v=6;
+		for(int i=0;i<v;i++)
+		graph.add(new ArrayList<Edge>());
+	}
+}
