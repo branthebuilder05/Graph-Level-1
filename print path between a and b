@@ -1,0 +1,80 @@
+import java.util.*;
+public class Main
+{
+    static class Edge{
+        int src;
+        int dest;
+        int wt;
+        Edge(int src,int dest,int wt){
+            this.src=src;
+            this.dest=dest;
+            this.wt=wt;
+        }
+    }
+    
+	public static void main(String[] args) {
+		ArrayList<ArrayList<Edge>>graph=new ArrayList<ArrayList<Edge>>();
+		
+		int v=7;
+		for(int i=0;i<v;i++)
+		graph.add(new ArrayList<Edge>());
+		
+		        graph.get(0).add(new Edge(0,1,10));
+			    graph.get(1).add(new Edge(1,0,10));
+			    
+				graph.get(0).add(new Edge(0,3,10));
+			    graph.get(3).add(new Edge(3,0,10));
+			    
+				graph.get(1).add(new Edge(1,2,10));
+				graph.get(2).add(new Edge(2,1,10));
+				
+				graph.get(2).add(new Edge(2,3,10));
+				graph.get(3).add(new Edge(3,2,10));
+				
+				graph.get(3).add(new Edge(3,4,10));
+				graph.get(4).add(new Edge(4,3,10));
+				
+				// graph.get(4).add(new Edge(4,5,10));
+				// graph.get(5).add(new Edge(5,4,10));
+				
+				graph.get(5).add(new Edge(5,6,10));
+				graph.get(6).add(new Edge(6,5,10));
+				
+				graph.get(4).add(new Edge(4,6,10));
+				graph.get(6).add(new Edge(6,4,10));
+				
+				
+				boolean visited[]=new boolean[v];
+				Arrays.fill(visited,false);
+				System.out.println(hasPath(graph,0,6,visited));
+				// for(int i=0;i<v;i++ ){
+				// for(Edge ele:graph.get(i)){
+				//     System.out.println(ele.src+" "+ele.dest+" "+ele.wt);
+				// }
+				// System.out.println();
+				// }
+			
+				
+				
+	}
+	public static String hasPath(ArrayList<ArrayList<Edge>> graph, int src,int dest,boolean visited[]) {
+	    if(src==dest) {
+	        String s=dest+" ";
+	        return s;
+	    }
+	    
+	      
+	        for(Edge ele:graph.get(src)){
+	             visited[ele.src]=true;
+	            if(visited[ele.dest]==false)  {
+	                String path = ele.src+" "+hasPath(graph,ele.dest,dest,visited);
+	             
+	              return path;
+	            }
+  
+	    } 
+	    
+	    return "false";
+	}
+	
+}
