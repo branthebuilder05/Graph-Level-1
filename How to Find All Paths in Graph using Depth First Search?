@@ -15,67 +15,65 @@ public class Main
 	public static void main(String[] args) {
 		ArrayList<ArrayList<Edge>>graph=new ArrayList<ArrayList<Edge>>();
 		
-		int v=7;
+		int v=8;
 		for(int i=0;i<v;i++)
 		graph.add(new ArrayList<Edge>());
 		
 		        graph.get(0).add(new Edge(0,1,10));
 			    graph.get(1).add(new Edge(1,0,10));
 			    
-				graph.get(0).add(new Edge(0,3,10));
-			    graph.get(3).add(new Edge(3,0,10));
+			    graph.get(0).add(new Edge(0,2,10));
+			    graph.get(2).add(new Edge(2,0,10));
 			    
-				graph.get(1).add(new Edge(1,2,10));
-				graph.get(2).add(new Edge(2,1,10));
-				
-				graph.get(2).add(new Edge(2,3,10));
-				graph.get(3).add(new Edge(3,2,10));
-				
-				graph.get(3).add(new Edge(3,4,10));
-				graph.get(4).add(new Edge(4,3,10));
-				
-				graph.get(4).add(new Edge(4,5,10));
-				graph.get(5).add(new Edge(5,4,10));
-				
-				graph.get(5).add(new Edge(5,6,10));
-				graph.get(6).add(new Edge(6,5,10));
-				
-				graph.get(4).add(new Edge(4,6,10));
-				graph.get(6).add(new Edge(6,4,10));
+			    graph.get(2).add(new Edge(2,1,10));
+			    graph.get(1).add(new Edge(1,2,10));
+			    
+			    graph.get(2).add(new Edge(2,3,10));
+			    graph.get(3).add(new Edge(3,2,10));
+			    
+			     graph.get(3).add(new Edge(3,4,10));
+			    graph.get(4).add(new Edge(4,3,10));
+			    
+			     graph.get(3).add(new Edge(3,5,10));
+			    graph.get(5).add(new Edge(5,3,10));
+			    
+			     graph.get(5).add(new Edge(5,6,10));
+			    graph.get(6).add(new Edge(6,5,10));
+			    
+			     graph.get(5).add(new Edge(5,7,10));
+			    graph.get(7).add(new Edge(7,5,10));
+			    
+			     graph.get(6).add(new Edge(6,7,10));
+			    graph.get(7).add(new Edge(7,6,10));
+			    //end
+			    
+			    
 				
 				
 				boolean visited[]=new boolean[v];
 				Arrays.fill(visited,false);
-				hasPath(graph,0,6,visited,0+"");
-				// for(int i=0;i<v;i++ ){
-				// for(Edge ele:graph.get(i)){
-				//     System.out.println(ele.src+" "+ele.dest+" "+ele.wt);
-				// }
-				// System.out.println();
-				// }
+				findAllPath(graph,0,6,visited,0+"");
 			
 				
-				
-	}
-	public static void hasPath(ArrayList<ArrayList<Edge>> graph, int src,int dest,boolean visited[],String psf) {
-	    if(src==dest) {
-	       System.out.println(psf);
-	       return;
-	    }
-	    
-	      
-	        for(Edge ele:graph.get(src)){
-	             visited[ele.src]=true;
-	            if(visited[ele.dest]==false)  {
-	              hasPath(graph,ele.dest,dest,visited,psf+" "+ ele.dest);
-	             
-	              
-	            }
-	             visited[ele.src]=false;
-  
-	    } 
-	   
-	    
 	}
 	
+	public static void findAllPath(ArrayList<ArrayList<Edge>> graph,int src,int dest,boolean visited[],String psf){
+	    //base 
+	    if(src==dest){ System.out.println(psf);
+	        return;
+	    }
+	
+	    //choice
+	    else{
+	        visited[src]= true;
+	        for(Edge ele:graph.get(src)){
+	            if(visited[ele.dest]==false)
+	            findAllPath(graph,ele.dest,dest,visited,psf+" "+ele.dest);
+	        }
+	        visited[src]=false;
+	        
+	        
+	    }
+	}
+
 }
